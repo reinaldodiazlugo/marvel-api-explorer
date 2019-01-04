@@ -1,7 +1,6 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
-      :mini-variant="miniVariant"
       :clipped="clipped"
       v-model="drawer"
       fixed
@@ -30,26 +29,9 @@
       app
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
+      <v-toolbar-title v-text="title" />
       <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'" />
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"/>
-      <v-btn
+        v-if="right"
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
@@ -86,21 +68,22 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
-      }
+export default {
+  data() {
+    return {
+      clipped: true,
+      drawer: true,
+      fixed: false,
+      items: [
+        { icon: 'apps', title: 'Welcome', to: '/' },
+        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+        { title: 'Characters', to: '/characters' }
+      ],
+      miniVariant: false,
+      right: false,
+      rightDrawer: false,
+      title: 'Marvel API Explorer'
     }
   }
+}
 </script>
